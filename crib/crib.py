@@ -7,7 +7,7 @@ def keygen(password):
 
 def encrypt(key, file_name, chunksize = 64 * 1024):
 	# Encrypts the file
-	output = file_name + '.enc'
+	output = file_name + '.crib'
 	
 	IV = ''.join(chr(random.randint(0, 0xFF)) for i in range(16))
 	encryptor = AES.new(key, AES.MODE_CBC, IV)
