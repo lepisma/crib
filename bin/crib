@@ -30,33 +30,48 @@ if args['encrypt']:
 		second_password = getpass.getpass()
 
 		if first_password != second_password:
-			print "Passwords dont match. Try again."
+			print "Passwords dont match. Try again"
 		else:
 			print "Passwords match. Encrypting . . ."
 			password = second_password
 			break
 
-	crib.encrypt(crib.keygen(password), args['encrypt'])
-	os.remove(args['encrypt'])
-
-	print "Encryption done"
+	if crib.encrypt(crib.keygen(password), args['encrypt']) == 1:
+		os.remove(args['encrypt'])
+		print "Encryption done"
+	else:
+		print "Something wicked happened"
 
 elif args['decrypt']:
 	# If decryption is to be done
 	password = getpass.getpass()
-	crib.decrypt(crib.keygen(password), args['decrypt'])
-	os.remove(args['decrypt'])
+	if crib.decrypt(crib.keygen(password), args['decrypt']) == 1:
+		os.remove(args['decrypt'])
+		print "Decryption done"
+	else:
+		print "Something wicked happened"
 
 elif args['show']:
 	# If reading or editing the file is needed
 	# It performs temporary decryption
 	password = getpass.getpass()
-	crib.decrypt(crib.keygen(password), args['show'])
-	os.remove(args['show'])
+	if crib.decrypt(crib.keygen(password), args['show']) == 1:
+		os.remove(args['show'])
+		print "Decryption done"
+	else:
+		print "Something wicked happened"
 	
 	file_name = os.path.splitext(args['show'])[0]
 	
-	call(("nano", file_name))
+	try:
+		call(("nano", file_name))
+	except OSError as e:
+		if e.errno == 2:
+			# Program nano not found
+			print "Your computer doesn't have 'nano' installed"
+		else:
+			print "Error in opening file"
 
-	crib.encrypt(crib.keygen(password), file_name)
-	os.remove(file_name)
+	if crib.encrypt(crib.keygen(password), file_name) == 1:
+		os.remove(file_name)
+		print "Re-encrypted"
