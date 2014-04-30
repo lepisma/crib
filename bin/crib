@@ -3,6 +3,7 @@
 from subprocess import call
 import os, argparse, getpass
 from crib import crib
+from sys import platform
 
 # ----------------------------------------
 # Initialize parser
@@ -64,12 +65,17 @@ elif args['show']:
 	file_name = os.path.splitext(args['show'])[0]
 	
 	try:
-		call(("nano", file_name))
-	except OSError as e:
-		if e.errno == 2:
-			# Program nano not found
-			print "Your computer doesn't have 'nano' installed"
-		else:
+		if platform == "linux" or platform == "linux2":
+			# Linux based OS detected
+			# call(("xdg-open", file_name))
+			call(("xdg-open", file_name))
+		elif platform == "win32":
+			# Windows detected
+			os.startfile(file_name)
+		elif platform == "darwin":
+			# Mac OS detected
+			call(("open", file_name))
+	except:
 			print "Error in opening file"
 
 	if crib.encrypt(crib.keygen(password), file_name) == 1:
