@@ -1,0 +1,14 @@
+Crib Changelog
+--------------
+
+---------------- v 0.2 -------------------
+
+* Support for Windows, Linux and Mac
+* Support for respective editor for a file
+* Crib importable package with encryption functions
+* Error message display
+* File extension changed from .enc to .crib
+
+---------------- v 0.1 -------------------
+
+* Basic working script
