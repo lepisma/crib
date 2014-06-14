@@ -1,6 +1,10 @@
 Crib Changelog
 --------------
 
+---------------- v 0.2.1 -------------------
+
+* Change script file to command entry type (resolves issue on windows)
+
 ---------------- v 0.2 -------------------
 
 * Support for Windows, Linux and Mac
