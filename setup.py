@@ -5,7 +5,7 @@ def readme():
         return f.read()
 
 setup(name = 'crib',
-	version = '0.2',
+	version = '0.2.1',
 	description = 'Minimal command line encryption for tiny notes',
 	long_description = readme(),
 	keywords = 'notes encryption minimal',
@@ -15,6 +15,8 @@ setup(name = 'crib',
 	license = 'MIT',
 	packages = ['crib'],
 	install_requires = ['pycrypto'],
-	scripts = ['bin/crib'],
+	entry_points={
+		'console_scripts': ['crib = crib.command:main'],
+	},
 	include_package_data = True,
 	zip_safe = False)
