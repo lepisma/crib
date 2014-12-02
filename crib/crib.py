@@ -3,24 +3,24 @@ from Crypto.Cipher import AES
 import random, struct, hashlib, os
 
 def keygen(password):
-	# Generates a fixed length key from the given password
+        # Generates a fixed length key from the given password
 	return hashlib.sha256(password).digest()
 
 def encrypt(key, file_name, chunksize = 64 * 1024):
 	# Encrypts the file
-	output = file_name + '.crib'
+        output = file_name + '.crib'
 	
 	IV = ''.join(chr(random.randint(0, 0xFF)) for i in range(16))
 	encryptor = AES.new(key, AES.MODE_CBC, IV)
 
 	try:
-		file_size = os.path.getsize(file_name)
+                file_size = os.path.getsize(file_name)
 	except OSError as e:
 		if e.errno == 2:
-			print "No such file found"
+                        print("No such file found")
 			return 0
 		else:
-			print "Unknown error in file reading"
+			print("Unknown error in file reading")
 			return 0
 
 	try:
@@ -40,10 +40,10 @@ def encrypt(key, file_name, chunksize = 64 * 1024):
 				return 1
 	except IOError as e:
 		if e.errno == 2:
-			print "No such file found"
+			print("No such file found")
 			return 0
 		else:
-			print "Unknown error in file reading"
+			print("Unknown error in file reading")
 			return 0
 
 def decrypt(key, file_name, chunksize = 24 * 1024):
@@ -67,8 +67,8 @@ def decrypt(key, file_name, chunksize = 24 * 1024):
 				
 	except IOError as e:
 		if e.errno == 2:
-			print "No such file found"
+			print("No such file found")
 			return 0
 		else:
-			print "Unknow error in file reading"
+			print("Unknow error in file reading")
 			return 0
