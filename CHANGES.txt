@@ -1,7 +1,13 @@
 Crib Changelog
 --------------
 
----------------- v 0.2.1 -------------------
+---------------- v 0.2.2 -----------------
+
+* Temporary decryption issue resolved
+* Python3 style print function
+* Consistent code indentation
+
+---------------- v 0.2.1 -----------------
 
 * Change script file to command entry type (resolves issue on windows)
 
