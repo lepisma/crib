@@ -79,6 +79,10 @@ def main():
 		except:
 				print "Error in opening file"
 
+                print("Waiting for process to complete. . .")
+                print("Press any key to re-encrypt the file.")
+                raw_input()
+
 		if crib.encrypt(crib.keygen(password), file_name) == 1:
 			os.remove(file_name)
 			print "Re-encrypted"
