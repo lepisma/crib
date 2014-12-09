@@ -1,6 +1,10 @@
 Crib Changelog
 --------------
 
+---------------- v 0.2.3 -----------------
+
+* Improved argument parsing
+
 ---------------- v 0.2.2 -----------------
 
 * Temporary decryption issue resolved

@@ -5,7 +5,7 @@ def readme():
         return f.read()
 
 setup(name = 'crib',
-      version = '0.2.2',
+      version = '0.2.3',
       description = 'Minimal command line encryption for tiny notes',
       long_description = readme(),
       keywords = 'notes encryption minimal',

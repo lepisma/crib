@@ -9,20 +9,27 @@ def main():
     # ----------------------------------------
     # Initialize parser
 
-    parser = argparse.ArgumentParser(description = 'crib is a minimal command line encryption tool')
-    parser.add_argument('-e', '--encrypt',
-                        help = 'Encrypts a file')
-    parser.add_argument('-d', '--decrypt',
-                        help = 'Decrypts a file')
-    parser.add_argument('-s', '--show',
-                        help = 'Opens a file for editing and / or viewing')
+    parser = argparse.ArgumentParser(description = "crib is a minimal command line encryption tool")
+    parser.add_argument("file",
+                        help = "the file to be acted on")
 
-    args = vars(parser.parse_args())
+    action_group = parser.add_mutually_exclusive_group()
+    action_group.add_argument("-e", "--encrypt",
+                              help = "encrypts the file",
+                              action = "store_true")
+    action_group.add_argument("-d", "--decrypt",
+                              help = "decrypts the file",
+                              action = "store_true")
+    action_group.add_argument("-s", "--show",
+                        help = "temporarily opens the file for editing and / or viewing",
+                        action = "store_true")
+
+    args = parser.parse_args()
 
     # -----------------------------------------
     # Action handling
 
-    if args['encrypt']:
+    if args.encrypt:
         # If encryption is to be done
         password = ""
         while True:
@@ -39,32 +46,32 @@ def main():
                 password = second_password
                 break
 
-        if crib.encrypt(crib.keygen(password), args['encrypt']) == 1:
-            os.remove(args['encrypt'])
+        if crib.encrypt(crib.keygen(password), args.file) == 1:
+            os.remove(args.file)
             print("Encryption done")
         else:
             print("Something wicked happened")
 
-    elif args['decrypt']:
+    elif args.decrypt:
         # If decryption is to be done
         password = getpass.getpass()
-        if crib.decrypt(crib.keygen(password), args['decrypt']) == 1:
-            os.remove(args['decrypt'])
+        if crib.decrypt(crib.keygen(password), args.file) == 1:
+            os.remove(args.file)
             print("Decryption done")
         else:
             print("Something wicked happened")
 
-    elif args['show']:
+    elif args.show:
         # If reading or editing the file is needed
         # It performs temporary decryption
         password = getpass.getpass()
-        if crib.decrypt(crib.keygen(password), args['show']) == 1:
-            os.remove(args['show'])
+        if crib.decrypt(crib.keygen(password), args.file) == 1:
+            os.remove(args.file)
             print("Decryption done")
         else:
             print("Something wicked happened")
 		
-        file_name = os.path.splitext(args['show'])[0]
+        file_name = os.path.splitext(args.file)[0]
 		
         try:
             if platform == "linux" or platform == "linux2":
@@ -79,7 +86,7 @@ def main():
         except:
             print("Error in opening file")
 
-        print("Waiting for process to complete. . .")
+        print("Waiting on user . . .")
         print("Press return to re-encrypt the file.")
         raw_input()
 

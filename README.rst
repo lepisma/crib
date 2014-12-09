@@ -15,6 +15,7 @@ Usage
 - Encrypt : ``crib -e [filename]``
 - Decrypt : ``crib -d [filename]``
 - View / Edit : ``crib -s [filename]``
+- Help : ``crib -h``
 
 
 MIT License
