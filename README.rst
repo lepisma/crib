@@ -2,15 +2,15 @@
 Crib
 ====
 
-.. image:: https://pypip.in/version/crib/badge.svg
+.. image:: https://img.shields.io/pypi/v/crib.svg
     :target: https://pypi.python.org/pypi/crib/
     :alt: Latest Version
     
-.. image:: https://pypip.in/download/crib/badge.svg
+.. image:: https://img.shields.io/pypi/dm/crib.svg
     :target: https://pypi.python.org/pypi//crib/
     :alt: Downloads
   
-.. image:: https://pypip.in/license/crib/badge.svg
+.. image:: https://img.shields.io/pypi/l/crib.svg
     :target: https://pypi.python.org/pypi/crib/
     :alt: License
 
